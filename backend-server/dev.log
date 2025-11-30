@@ -1,0 +1,19 @@
+
+> dms-backend@1.0.0 dev
+> ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/server.ts
+
+[INFO] 06:52:12 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.8.3)
+PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor
+    at validateDependentOptions (E:\code\personal-project\homify-server\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:203:11)
+    at validatePrismaClientOptions (E:\code\personal-project\homify-server\node_modules\@prisma\client\src\runtime\utils\validatePrismaClientOptions.ts:220:3)
+    at new t (E:\code\personal-project\homify-server\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:242:9)
+    at Object.<anonymous> (E:\code\personal-project\homify-server\src\shared\prisma.ts:3:16)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1554:14)
+    at Module._compile (E:\code\personal-project\homify-server\node_modules\source-map-support\source-map-support.js:568:25)
+    at Module.m._compile (C:\Users\rahat\AppData\Local\Temp\ts-node-dev-hook-9694498858885949.js:69:33)
+    at node:internal/modules/cjs/loader:1706:10
+    at require.extensions..jsx.require.extensions..js (C:\Users\rahat\AppData\Local\Temp\ts-node-dev-hook-9694498858885949.js:114:20)
+    at require.extensions.<computed> (C:\Users\rahat\AppData\Local\Temp\ts-node-dev-hook-9694498858885949.js:71:20)
+[ERROR] 06:52:12 PrismaClientConstructorValidationError: Using engine type "client" requires either "adapter" or "accelerateUrl" to be provided to PrismaClient constructor.
+Read more at https://pris.ly/d/client-constructor

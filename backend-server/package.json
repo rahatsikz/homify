@@ -1,0 +1,53 @@
+{
+  "name": "dms-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/server.ts",
+    "cron": "tsx watch src/cron.ts",
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@prisma/config": "^7.0.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/express-session": "^1.18.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.15.3",
+    "@types/nodemailer": "^6.4.17",
+    "@types/pg": "^8.15.6",
+    "prisma": "^7.0.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.0.1",
+    "@prisma/client": "^7.0.1",
+    "@sendlime/server-sdk": "^1.2.2",
+    "axios": "^1.10.0",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "http-status": "^2.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "node-cron": "^4.1.1",
+    "nodemailer": "^6.10.1",
+    "pg": "^8.16.3",
+    "ts-node-dev": "^2.0.0",
+    "zod": "^3.24.3"
+  }
+}

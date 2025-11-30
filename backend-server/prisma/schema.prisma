@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model OneTimePasswords {
+  phone   String   @unique
+  otp     String
+  expires DateTime
+
+  @@map("one_time_passwords")
+}
+
+model Owner {
+  id               String      @id @default(cuid())
+  name             String?
+  mobile           String      @unique
+  houseName        String?
+  houseAddress     Address?    @relation(fields: [houseAddressId], references: [id])
+  houseAddressId   String?     @unique
+  bilCopy          ImageAsset? @relation(fields: [bilCopyId], references: [id])
+  bilCopyId        String?     @unique
+  isVerified       Boolean     @default(false)
+  electricityMeter String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@map("owner")
+}
+
+model Tenant {
+  id               String        @id @default(cuid())
+  name             String
+  mobile           String        @unique
+  electricityMeter String
+  descoAccountNo   String?
+  gasMeter         String?
+  floor            String
+  stayStartDate    DateTime
+  isSublet         Boolean
+  numberOfPeople   Int
+  nid              String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  sublet           Sublet?
+  rents            Rent[]
+  descoReading     DescoReading?
+
+  @@map("tenant")
+}
+
+model Sublet {
+  id             String   @id @default(cuid())
+  name           String
+  mobile         String   @unique
+  numberOfPeople Int
+  nid            String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String @unique
+
+  @@map("sublet")
+}
+
+model Rent {
+  id              String        @id @default(cuid())
+  month           String
+  year            Int
+  paymentStatus   PaymentStatus @default(DUE)
+  paymentDate     DateTime?
+  paidAmount      Int?
+  houseRent       Int
+  waterBill       Int
+  electricityBill Int?
+  gasBill         Int
+  utilityBill     Int?
+  dueAmount       Int?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  Tenant          Tenant        @relation(fields: [tenantId], references: [id])
+  tenantId        String
+
+  @@map("rent")
+}
+
+enum PaymentStatus {
+  PAID
+  DUE
+  PARTIAL
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  houseNo   String
+  street    String
+  town      String
+  city      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Owner     Owner?
+
+  @@map("address")
+}
+
+model ImageAsset {
+  id           String   @id @default(cuid())
+  assetId      String?
+  publicId     String?
+  secureUrl    String
+  format       String?
+  width        Int?
+  height       Int?
+  resourceType String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  Owner        Owner?
+
+  @@map("image_asset")
+}
+
+model DescoReading {
+  id          String   @id @default(cuid())
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  tenantId    String   @unique
+  balance     Float
+  readingTime DateTime
+  createdAt   DateTime @default(now())
+
+  @@index([tenantId])
+}

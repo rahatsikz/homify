@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Homify",
+    "slug": "homify",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/homify-logo.png",
+    "scheme": "homify-app",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/homify-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/homify-logo.png",
+        "backgroundColor": "#ffffff",
+        "titleBarHidden": true
+      },
+      "package": "com.mailtorahat.homifyapp",
+      "versionCode": 1,
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/homify-logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "titleBarHidden": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
